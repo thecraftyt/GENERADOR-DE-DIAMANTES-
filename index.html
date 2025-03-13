@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Diamantes</title>
+    <style>
+        /* Bloquear el desplazamiento y ocupar toda la pantalla */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            background: #111;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Evita que la pantalla se desplace */
+        }
+
+        /* Contenedor del generador más grande y centrado */
+        .generator-container {
+            text-align: center;
+            padding: 30px;
+            background: #222;
+            color: white;
+            border-radius: 10px;
+            width: 95%;
+            max-width: 600px;
+            height: 90vh;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Título más grande */
+        .generator-container h2 {
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        /* Inputs y botón con mayor tamaño */
+        .generator-container input, .generator-container button {
+            width: 90%;
+            padding: 14px;
+            font-size: 20px;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+            margin: 12px 0;
+        }
+
+        .generator-container input {
+            color: #000 !important;
+            background: #fff;
+        }
+
+        /* Botón */
+        .generator-container button {
+            background: green;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* Mensaje */
+        #message {
+            font-size: 20px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Generador de Diamantes -->
+    <div class="generator-container">
+        <h2>💎 Generador de Diamantes Free Fire 💎</h2>
+        <form id="generatorForm">
+            <input type="text" id="playerID" placeholder="Ingresa tu ID" required>
+            <input type="number" id="diamonds" min="1" max="100000" placeholder="Cantidad de Diamantes" required>
+            <button type="submit">Generar</button>
+        </form>
+        <p id="message">Ingrese sus datos y presione "Generar".</p>
+    </div>
+
+    <script>
+        document.getElementById('generatorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const playerID = document.getElementById('playerID').value;
+            const diamonds = document.getElementById('diamonds').value;
+            const messageDiv = document.getElementById('message');
+
+            if (playerID === '' || diamonds === '') {
+                messageDiv.textContent = 'Por favor, complete todos los campos.';
+                return;
+            }
+
+            messageDiv.textContent = 'Procesando...';
+
+            setTimeout(() => {
+                messageDiv.innerHTML = `✅ ¡Éxito! Se han añadido <b>${diamonds}</b> diamantes a la cuenta con ID: <b>${playerID}</b>.`;
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
